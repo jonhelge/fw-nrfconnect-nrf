@@ -59,7 +59,7 @@ static void erase_confirm(void);
 static const struct state_switch state_switch[] = {
 	 /* State           Event         Next state         Callback */
 #if CONFIG_DESKTOP_BLE_PEER_SELECT
-	{STATE_IDLE,        CLICK_SHORT,  STATE_SELECT_PEER, select_start},
+	{STATE_IDLE,        CLICK_DOUBLE, STATE_SELECT_PEER, select_start},
 	{STATE_SELECT_PEER, CLICK_SHORT,  STATE_SELECT_PEER, select_next},
 	{STATE_SELECT_PEER, CLICK_DOUBLE, STATE_IDLE,        select_confirm},
 #endif
