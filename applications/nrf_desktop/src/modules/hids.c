@@ -18,6 +18,7 @@
 #include "hid_event.h"
 #include "ble_event.h"
 #include "config_event.h"
+#include "keyboard_leds_event.h"
 
 #include "hid_report_desc.h"
 #include "config_channel.h"
@@ -224,7 +225,10 @@ static void keyboard_leds_handler(struct bt_gatt_hids_rep *rep,
 				  struct bt_conn *conn,
 				  bool write)
 {
-	LOG_WRN("KEYBOARD_LEDS output report is ignored");
+	struct keyboard_leds_event *event = new_keyboard_leds_event();
+	event->keyboard_leds = rep->data[0];
+	EVENT_SUBMIT(event);
+	//LOG_WRN("KEYBOARD_LEDS output report is ignored");
 }
 
 static void feature_report_handler(struct bt_gatt_hids_rep *rep,
